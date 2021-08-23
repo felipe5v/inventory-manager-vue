@@ -1,30 +1,86 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+  <router-view @log-in="logIn" />
 </template>
 
+<script>
+  import gql from "graphql-tag";
+  export default {
+    components: {},
+    setup() {},
+    data: function() {
+      return {
+        is_auth: false,
+      };
+    },
+    created: function() {
+      this.updateAccessToken();
+    },
+    methods: {
+      updateAccessToken: async function() {
+        if (localStorage.getItem("refresh_token") == null) {
+          this.$router.push({ name: "Login" });
+          this.is_auth = false;
+          return;
+        }
+        await this.$apollo
+          .mutate({
+            mutation: gql`
+              mutation($refreshTokenRefresh: String!) {
+                refreshToken(refresh: $refreshTokenRefresh) {
+                  access
+                }
+              }
+            `,
+            variables: {
+              refreshTokenRefresh: localStorage.getItem("refresh_token"),
+            },
+          })
+          .then((result) => {
+            localStorage.setItem(
+              "access_token",
+              result.data.refreshToken.access
+            );
+            this.is_auth = true;
+          })
+          .catch(() => {
+            alert("Su sesión expiró, vuelva a iniciar sesión.");
+            this.$router.push({ name: "Login" });
+            this.is_auth = false;
+          });
+      },
+      logIn: async function(data, username) {
+        alert("hola");
+        localStorage.setItem("access_token", data.access);
+        localStorage.setItem("refresh_token", data.refresh);
+        localStorage.setItem("user_id", data.user_id);
+        localStorage.setItem("current_username", username);
+        await this.updateAccessToken();
+        if (this.is_auth) this.init();
+      },
+      init: function() {
+        this.$router.push({
+          name: "Home",
+        });
+      },
+      logOut: async function() {
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("refresh_token");
+        localStorage.removeItem("user_id");
+        localStorage.removeItem("current_username");
+        await this.updateAccessToken();
+      },
+    },
+  };
+</script>
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+  @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+  body {
+    margin: 0;
+    font-family: "Roboto", sans-serif;
   }
-}
+  *,
+  *::after,
+  *::before {
+    box-sizing: border-box;
+  }
 </style>
