@@ -29,7 +29,7 @@
           {
             question: "¿Olvidó su contraseña?",
             aText: "Recuperela",
-            url: "home",
+            url: "",
           },
           {
             question: "¿No tiene una cuenta?",

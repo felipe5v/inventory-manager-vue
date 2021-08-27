@@ -1,11 +1,13 @@
 <template>
+  <nav-bar-vue :v-if="is_auth" />
   <router-view @log-in="logIn" />
 </template>
 
 <script>
   import gql from "graphql-tag";
+  import NavBarVue from "./components/NavBarComponent/NavBarVue.vue";
   export default {
-    components: {},
+    components: { NavBarVue },
     setup() {},
     data: function() {
       return {
@@ -22,10 +24,11 @@
           this.is_auth = false;
           return;
         }
+        console.log("1");
         await this.$apollo
           .mutate({
             mutation: gql`
-              mutation($refreshTokenRefresh: String!) {
+              mutation RefreshTokenMutation($refreshTokenRefresh: String!) {
                 refreshToken(refresh: $refreshTokenRefresh) {
                   access
                 }
@@ -42,14 +45,14 @@
             );
             this.is_auth = true;
           })
-          .catch(() => {
+          .catch((error) => {
+            console.log(error);
             alert("Su sesión expiró, vuelva a iniciar sesión.");
             this.$router.push({ name: "Login" });
             this.is_auth = false;
           });
       },
       logIn: async function(data, username) {
-        alert("hola");
         localStorage.setItem("access_token", data.access);
         localStorage.setItem("refresh_token", data.refresh);
         localStorage.setItem("user_id", data.user_id);
@@ -73,7 +76,7 @@
   };
 </script>
 <style lang="scss">
-  @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
   body {
     margin: 0;
     font-family: "Roboto", sans-serif;
