@@ -43,7 +43,13 @@
               result.data.refreshToken.access
             );
             this.is_auth = true;
-            this.$router.push({ name: "Home" });
+            console.log(this.$router.currentRoute.value.fullPath);
+            if (
+              this.$router.currentRoute.value.fullPath === "/login" ||
+              this.$router.currentRoute.value.fullPath === "/signup"
+            ) {
+              this.$router.push({ name: "Home" });
+            }
           })
           .catch((error) => {
             console.log(error);
