@@ -31,7 +31,7 @@
   #header {
     background-color: #d8dde7;
     padding: 0 20px;
-    height: 100px;
+    height: 76px;
     display: flex;
     flex: 1;
     justify-content: center;

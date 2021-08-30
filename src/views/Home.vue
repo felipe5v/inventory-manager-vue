@@ -56,4 +56,12 @@
   };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+  ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+</style>

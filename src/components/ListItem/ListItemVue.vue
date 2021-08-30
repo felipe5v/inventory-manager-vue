@@ -28,6 +28,12 @@
 <style lang="scss" scoped>
   li {
     display: flex;
+    width: 80%;
+    flex: 1;
+    gap: 20px;
+    * {
+      flex: 1;
+    }
   }
   img {
     width: 320px;

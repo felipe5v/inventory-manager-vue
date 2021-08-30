@@ -1,14 +1,14 @@
 <template>
-  <hr />
-  <hr />
-  <hr />
-  <hr />
-  <hr />
-  <hr />
-  <hr />
-  <hr />
-  <hr />
-  <hr />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
   <div>
     Prueben sus componentes aquí
   </div>
