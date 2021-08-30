@@ -1,5 +1,5 @@
 <template>
-  <nav-bar-vue :v-if="is_auth" />
+  <nav-bar-vue v-if="is_auth" />
   <router-view @log-in="logIn" />
 </template>
 
@@ -24,7 +24,6 @@
           this.is_auth = false;
           return;
         }
-        console.log("1");
         await this.$apollo
           .mutate({
             mutation: gql`
@@ -44,6 +43,7 @@
               result.data.refreshToken.access
             );
             this.is_auth = true;
+            this.$router.push({ name: "Home" });
           })
           .catch((error) => {
             console.log(error);

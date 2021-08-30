@@ -9,7 +9,7 @@ import {
 import { createApolloProvider } from "@vue/apollo-option";
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:4000/",
+  uri: "https://inventorymanager-apigateway.herokuapp.com/",
 });
 const apolloClient = new ApolloClient({
   link: httpLink,

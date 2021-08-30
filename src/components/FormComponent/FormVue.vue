@@ -28,7 +28,7 @@
   export default {
     props: {
       formData: Object,
-      submit: Function,
+      fsubmit: Function,
     },
     components: {
       CenterWrapper,
@@ -41,10 +41,11 @@
       const formValue = inject("form-value");
       const formNames = (e) => {
         for (let property in formValue) {
+          console.log();
           formValue[property] = e.target.elements[property].value;
         }
 
-        props.submit();
+        props.fsubmit();
       };
       return { formValue, formNames };
     },

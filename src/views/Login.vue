@@ -1,6 +1,6 @@
 <template>
   <background>
-    <form-vue :formData="formData" :submit="processAuthUser" />
+    <form-vue :formData="formData" :fsubmit="processAuthUser" />
   </background>
 </template>
 
@@ -10,9 +10,10 @@
   import gql from "graphql-tag";
   import jwt_decode from "jwt-decode";
   import { reactive } from "@vue/reactivity";
-  import { provide, watchEffect } from "@vue/runtime-core";
+  import { provide } from "@vue/runtime-core";
   export default {
     components: { FormVue, Background },
+    emits: ["log-in"],
     setup() {
       const formData = {
         title: "INGRESE A SU INVENTORY MANAGER",
@@ -20,7 +21,7 @@
           {
             text: "Ingrese su correo electronico",
             type: "text",
-            name: "username",
+            name: "email",
           },
           { text: "Ingrese su contraseña", type: "password", name: "password" },
           { text: "Ingresar", type: "submit" },
@@ -39,13 +40,10 @@
         ],
       };
       const formValues = reactive({
-        username: "hol",
+        email: "",
         password: "",
       });
       provide("form-value", formValues);
-      watchEffect(() => {
-        console.log(formValues);
-      });
       return { formData, formValues };
     },
 
