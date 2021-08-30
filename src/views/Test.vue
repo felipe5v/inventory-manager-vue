@@ -1,4 +1,14 @@
 <template>
+  <hr />
+  <hr />
+  <hr />
+  <hr />
+  <hr />
+  <hr />
+  <hr />
+  <hr />
+  <hr />
+  <hr />
   <div>
     Prueben sus componentes aquí
   </div>
