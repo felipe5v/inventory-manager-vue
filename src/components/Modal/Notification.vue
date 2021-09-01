@@ -14,6 +14,7 @@ export default {
     .notification {
         display: none;
         position: absolute; 
+        z-index: 10;
         left: 0; 
         right: 0; 
         margin-left: auto; 

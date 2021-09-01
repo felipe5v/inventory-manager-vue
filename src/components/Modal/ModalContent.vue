@@ -70,7 +70,9 @@ export default {
     sendOrder: function () {
       console.log('hi');
       let notification = document.querySelector('.notification');
+      let modal = document.querySelector('.container-modal')
       notification.classList.add('active')
+      modal.classList.remove('active')
       setTimeout(() => {
         notification.classList.remove('active');
       }, 3000);
