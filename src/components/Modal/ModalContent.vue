@@ -18,7 +18,7 @@
     </div>
   </div>
   <div class="control-btns">
-    <main-style-button class="btn confirm">Confirmar</main-style-button>
+    <main-style-button class="btn confirm" @click="sendOrder">Confirmar</main-style-button>
     <main-style-button class="btn cancel" @click="closeModal"
       >Cancelar</main-style-button
     >
@@ -67,6 +67,14 @@ export default {
       let containerModal = document.querySelector(".container-modal");
       containerModal.classList.remove("active");
     },
+    sendOrder: function () {
+      console.log('hi');
+      let notification = document.querySelector('.notification');
+      notification.classList.add('active')
+      setTimeout(() => {
+        notification.classList.remove('active');
+      }, 3000);
+    }
   },
 };
 </script>

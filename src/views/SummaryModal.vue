@@ -2,13 +2,15 @@
   <div class="test">
     <button @click="showModal">Mostrar resumen</button>
   </div>
+  <notification />
   <modal-vue />
 </template>
 
 <script>
 import ModalVue from "../components/Modal/ModalVue.vue";
+import Notification from '../components/Modal/Notification.vue';
 export default {
-  components: { ModalVue },
+  components: { ModalVue, Notification },
   setup() {},
   methods: {
     showModal: function () {
@@ -26,5 +28,8 @@ export default {
   margin-top: 10%;
   display: flex;
   justify-content: center;
+}
+.active {
+  display: flex;
 }
 </style>
