@@ -1,15 +1,11 @@
 <template>
-  <button @click="onClickFunction">
+  <button>
     <slot></slot>
   </button>
 </template>
 
 <script>
-  export default {
-    props: {
-      onClickFunction: Function,
-    },
-  };
+  export default {};
 </script>
 
 <style lang="scss" scoped>
@@ -30,6 +26,5 @@
     font-weight: bold;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     width: 320px;
-    cursor: pointer;
   }
 </style>
