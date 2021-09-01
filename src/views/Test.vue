@@ -9,13 +9,25 @@
   <br />
   <br />
   <br />
-  <div>
-    Prueben sus componentes aquí
+  <div id="layout">
+    <nav-bar-menu/>
   </div>
 </template>
 
 <script>
-  export default {};
+  import NavBarMenu from "../components/ElementHelpers/NavBarMenu.vue"
+  export default {
+    components: { NavBarMenu},
+    setup() {      
+    }
+  };
 </script>
 
-<style></style>
+<style>
+  #layout {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+</style>
