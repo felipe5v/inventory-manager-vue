@@ -3,6 +3,7 @@ import Login from "../views/Login";
 import Signup from "../views/Signup";
 import Home from "../views/Home";
 import Test from "../views/Test";
+import SummaryModal from "../views/SummaryModal";
 const routes = [
   {
     path: "/",
@@ -23,6 +24,11 @@ const routes = [
     path: "/test",
     name: "Test",
     component: Test,
+  },
+  {
+    path: "/summary-modal",
+    name: "Resumen de pedido",
+    component: SummaryModal,
   },
 ];
 
