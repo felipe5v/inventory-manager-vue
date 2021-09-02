@@ -1,24 +1,15 @@
 <template>
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <main-list-vue :titleData="titleData" :itemsData="itemsData" />
+  <main-list-vue :titleData="titleData" :itemsData="itemsData.itemsData" />
 </template>
 
 <script>
   import MainListVue from "../components/MainList/MainListVue.vue";
   import gql from "graphql-tag";
+  import { reactive } from "@vue/reactivity";
   export default {
     components: { MainListVue },
     setup() {
-      let itemsData;
+      const itemsData = reactive({ itemsData: [] });
       const titleData = {
         mainTitle: "Productos",
         buttonText: "Agregar Producto",
@@ -50,7 +41,7 @@
                     productId
                     productName
                     category
-                    urlImg
+                    imgUrl
                     minimumAmount
                     suppliersId
                   }
@@ -61,14 +52,15 @@
               paginationPaginationSettings: {
                 pageNumber: 1,
                 pageSize: 6,
-                searchParam: "",
+                searchParam: this.$route.path.replace(/\/search=|\//, ""),
                 userId: localStorage.getItem("user_id"),
               },
               paginationUserId: localStorage.getItem("user_id"),
             },
           })
           .then((result) => {
-            console.log(result);
+            console.log(result.data.pagination.data);
+            this.itemsData.itemsData = result.data.pagination.data;
           });
       },
     },

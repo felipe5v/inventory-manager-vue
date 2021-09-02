@@ -20,7 +20,7 @@
     components: { ListPaginationVue, ListItemVue, ListTitleVue },
     props: {
       titleData: Object,
-      itemsData: Object,
+      itemsData: Array,
     },
   };
 </script>
@@ -36,6 +36,7 @@
     min-width: 100%;
   }
   #layout {
+    padding-top: 120px;
     display: flex;
     justify-content: center;
     align-items: center;

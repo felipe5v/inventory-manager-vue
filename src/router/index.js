@@ -3,6 +3,8 @@ import Login from "../views/Login";
 import Signup from "../views/Signup";
 import Home from "../views/Home";
 import Test from "../views/Test";
+import PendingOrder from "../views/PendingOrder";
+
 const routes = [
   {
     path: "/",
@@ -13,6 +15,11 @@ const routes = [
     path: "/search=:slug",
     name: "searchHome",
     component: Home,
+  },
+  {
+    path: "/pedido-pendiente",
+    name: "PendingOrder",
+    component: PendingOrder,
   },
 
   {

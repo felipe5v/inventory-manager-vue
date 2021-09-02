@@ -2,16 +2,16 @@
   <li>
     <div id="section-1">
       <div id="img-container">
-        <img :src="itemData.imgUrl" :alt="itemData.name" />
+        <img :src="itemData.imgUrl" :alt="itemData.productName" />
       </div>
     </div>
     <div id="img-caption">
-      <p id="name">{{ itemData.name }}</p>
-      <p id="price">${{ itemData.price }}</p>
+      <p id="name">{{ itemData.productName }}</p>
+      <p id="price">$25000</p>
     </div>
-    <p>{{ itemData.unidadesMinimas }} unidades</p>
+    <p>{{ itemData.minimumAmount }} unidades</p>
     <main-style-button id="button">
-      {{ itemData.pedidoEstipulado }} unidades
+      8 unidades
     </main-style-button>
     <i class="fas fa-edit"></i>
   </li>

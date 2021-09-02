@@ -48,7 +48,6 @@
               result.data.refreshToken.access
             );
             this.is_auth = true;
-            console.log(this.$router.currentRoute.value.fullPath);
             if (
               this.$router.currentRoute.value.fullPath === "/login" ||
               this.$router.currentRoute.value.fullPath === "/signup"
@@ -56,7 +55,8 @@
               this.$router.push({ name: "Home" });
             }
           })
-          .catch(() => {
+          .catch((error) => {
+            console.log(error);
             alert("Su sesión expiró, vuelva a iniciar sesión.");
             this.$router.push({ name: "Login" });
             this.is_auth = false;
