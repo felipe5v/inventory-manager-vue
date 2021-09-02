@@ -3,9 +3,14 @@ import Login from "../views/Login";
 import Signup from "../views/Signup";
 import Home from "../views/Home";
 import Test from "../views/Test";
+<<<<<<< HEAD
 import PendingOrder from "../views/PendingOrder";
 
 import SummaryModal from "../views/SummaryModal";
+=======
+import SummaryModal from "../views/SummaryModal";
+import Pruebas from "../views/Pruebas";
+>>>>>>> ModalProduct
 const routes = [
   {
     path: "/",
@@ -43,6 +48,14 @@ const routes = [
     name: "Resumen de pedido",
     component: SummaryModal,
   },
+<<<<<<< HEAD
+=======
+  {
+    path: "/pruebas",
+    name: "Productos",
+    component: Pruebas,
+  }
+>>>>>>> ModalProduct
 ];
 
 const router = createRouter({

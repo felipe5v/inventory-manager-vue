@@ -5,11 +5,7 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      onClickFunction: Function,
-    },
-  };
+  export default {};
 </script>
 
 <style lang="scss" scoped>
