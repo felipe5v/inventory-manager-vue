@@ -1,14 +1,19 @@
 <template>
-  <nav-bar-vue v-if="is_auth" />
+  <nav-bar-vue v-if="is_auth" modelWith="search-param" />
   <router-view @log-in="logIn" />
 </template>
 
 <script>
   import gql from "graphql-tag";
   import NavBarVue from "./components/NavBarComponent/NavBarVue.vue";
+  import { ref } from "@vue/reactivity";
+  import { provide } from "@vue/runtime-core";
   export default {
     components: { NavBarVue },
-    setup() {},
+    setup() {
+      const searchParam = ref("");
+      provide("search-param", searchParam);
+    },
     data: function() {
       return {
         is_auth: false,
@@ -51,11 +56,11 @@
               this.$router.push({ name: "Home" });
             }
           })
-          .catch((error) => {
-            console.log(error);
+          .catch(() => {
             alert("Su sesión expiró, vuelva a iniciar sesión.");
             this.$router.push({ name: "Login" });
             this.is_auth = false;
+            localStorage.clear();
           });
       },
       logIn: async function(data, username) {

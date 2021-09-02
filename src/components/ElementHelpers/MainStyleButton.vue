@@ -31,5 +31,9 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     width: 320px;
     cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 </style>

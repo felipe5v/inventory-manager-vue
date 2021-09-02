@@ -7,12 +7,23 @@ import {
   InMemoryCache,
 } from "@apollo/client/core";
 import { createApolloProvider } from "@vue/apollo-option";
+import { setContext } from "apollo-link-context";
 
 const httpLink = createHttpLink({
   uri: "https://inventorymanager-apigateway.herokuapp.com/",
 });
+
+const authLink = setContext((_, { headers }) => {
+  return {
+    headers: {
+      ...headers,
+      Authorization: localStorage.getItem("access_token") || "",
+    },
+  };
+});
+
 const apolloClient = new ApolloClient({
-  link: httpLink,
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 const apolloProvider = new createApolloProvider({

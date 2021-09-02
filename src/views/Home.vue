@@ -9,51 +9,16 @@
   <br />
   <br />
   <br />
-  <div id="layout">
-    <list-title-vue :titleData="titleData" />
-    <ul>
-      <list-item-vue
-        v-for="(item, idx) in itemsData"
-        :key="idx"
-        :itemData="item"
-      />
-    </ul>
-    <div>pagination</div>
-  </div>
+  <main-list-vue :titleData="titleData" :itemsData="itemsData" />
 </template>
 
 <script>
-  import ListItemVue from "../components/MainList/ListItemVue.vue";
-  import ListTitleVue from "../components/MainList/ListTitleVue.vue";
+  import MainListVue from "../components/MainList/MainListVue.vue";
+  import gql from "graphql-tag";
   export default {
-    components: { ListItemVue, ListTitleVue },
+    components: { MainListVue },
     setup() {
-      const itemsData = [
-        {
-          imgUrl:
-            "https://m.media-amazon.com/images/I/51fr+X46fYL._AC_SL1453_.jpg",
-          name: "martillo",
-          price: "25000",
-          unidadesMinimas: "8",
-          pedidoEstipulado: "7",
-        },
-        {
-          imgUrl:
-            "https://www.mundialdetornillos.com/images/Noticias/destornillador-herramienta-multifuncional-a360.jpg",
-          name: "destornillador",
-          price: "12000",
-          unidadesMinimas: "10",
-          pedidoEstipulado: "9",
-        },
-        {
-          imgUrl:
-            "https://www.mundialdetornillos.com/images/Noticias/destornillador-herramienta-multifuncional-a360.jpg",
-          name: "destornillador",
-          price: "12000",
-          unidadesMinimas: "10",
-          pedidoEstipulado: "9",
-        },
-      ];
+      let itemsData;
       const titleData = {
         mainTitle: "Productos",
         buttonText: "Agregar Producto",
@@ -61,23 +26,62 @@
       };
       return { itemsData, titleData };
     },
+    created: function() {
+      this.pagination();
+    },
+    methods: {
+      async pagination() {
+        await this.$apollo
+          .mutate({
+            mutation: gql`
+              mutation PaginationMutation(
+                $paginationPaginationSettings: PaginationInput!
+                $paginationUserId: String!
+              ) {
+                pagination(
+                  paginationSettings: $paginationPaginationSettings
+                  userId: $paginationUserId
+                ) {
+                  currentPage
+                  pageSize
+                  totalCount
+                  totalPages
+                  data {
+                    productId
+                    productName
+                    category
+                    urlImg
+                    minimumAmount
+                    suppliersId
+                  }
+                }
+              }
+            `,
+            variables: {
+              paginationPaginationSettings: {
+                pageNumber: 1,
+                pageSize: 6,
+                searchParam: "",
+                userId: localStorage.getItem("user_id"),
+              },
+              paginationUserId: localStorage.getItem("user_id"),
+            },
+          })
+          .then((result) => {
+            console.log(result);
+          });
+      },
+    },
+
+    watch: {
+      $route() {
+        console.log(this.$route.path);
+        if (this.$route.path === "/search=") {
+          this.$router.push({ name: "Home" });
+        } else {
+          this.pagination();
+        }
+      },
+    },
   };
 </script>
-
-<style lang="scss" scoped>
-  ul {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-    max-width: 1440px;
-    min-width: 100%;
-  }
-  #layout {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-</style>

@@ -10,6 +10,12 @@ const routes = [
     component: Home,
   },
   {
+    path: "/search=:slug",
+    name: "searchHome",
+    component: Home,
+  },
+
+  {
     path: "/login",
     name: "Login",
     component: Login,

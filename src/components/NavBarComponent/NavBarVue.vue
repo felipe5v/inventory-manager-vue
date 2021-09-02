@@ -4,7 +4,11 @@
       <div id="title">Inventory Manager</div>
       <div id="search">
         <i class="fas fa-search"></i>
-        <input type="search" placeholder="Ingrese el producto a buscar" />
+        <input
+          type="search"
+          placeholder="Ingrese el producto a buscar"
+          @keydown="handleEnter"
+        />
       </div>
       <div id="navbar">
         <i class="fas fa-bell ">
@@ -17,7 +21,21 @@
 </template>
 
 <script>
-  export default {};
+  import { useRouter } from "vue-router";
+  export default {
+    props: {
+      modelWith: String,
+    },
+    setup() {
+      const router = useRouter();
+      const handleEnter = (e) => {
+        if (e.keyCode === 13) {
+          router.push({ path: `/search=${e.target.value}` });
+        }
+      };
+      return { handleEnter };
+    },
+  };
 </script>
 
 <style lang="scss">
