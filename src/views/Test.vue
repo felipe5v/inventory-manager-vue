@@ -1,29 +1,31 @@
 <template>
-  <div class="test">
-    <button @click="showModal">Producto</button>
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <div id="layout">
+    <nav-bar-menu />
   </div>
-  <modal-product-vue />
 </template>
 <script>
-  import ModalProductVue from "../components/ModalProducts/ModalProductVue.vue";
-
+  import NavBarMenu from "../components/ElementHelpers/NavBarMenu.vue";
   export default {
-    components: { ModalProductVue },
+    components: { NavBarMenu },
     setup() {},
-    methods: {
-      showModal: function() {
-        let containerModal = document.querySelector(".container-modal");
-        containerModal.classList.add("active");
-      },
-    },
   };
 </script>
-<style lang="scss" scoped>
-  .test {
-    width: 100%;
-    height: 100%;
-    margin-top: 10%;
+
+<style>
+  #layout {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 </style>
