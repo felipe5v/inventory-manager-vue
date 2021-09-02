@@ -37,7 +37,7 @@
     min-width: 100%;
   }
   #layout {
-    padding-top: 50px;
+    padding-top: 120px;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -7,12 +7,13 @@
         </a>
       </li>
       <pagination-numbers
+        @click="handleClick"
         v-for="(num, idx) in [1, 2, 3]"
         :key="idx"
         :number="num"
         class="numbers"
       />
-      <li>
+      <li @click="handleClick">
         <a href="#">
           <span>&raquo;</span>
         </a>
@@ -25,6 +26,11 @@
   import PaginationNumbers from "./PaginationNumbers.vue";
   export default {
     components: { PaginationNumbers },
+    methods: {
+      handleClick(e) {
+        alert(e.target.innerHTML);
+      },
+    },
   };
 </script>
 

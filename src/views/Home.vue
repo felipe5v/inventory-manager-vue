@@ -1,5 +1,9 @@
 <template>
-  <main-list-vue :titleData="titleData" :itemsData="itemsData.itemsData" />
+  <main-list-vue
+    :titleData="titleData"
+    :itemsData="itemsData.itemsData"
+    @change-page="changePage"
+  />
 </template>
 
 <script>
@@ -26,7 +30,10 @@
       this.pagination();
     },
     methods: {
-      async pagination() {
+      changePage(pag) {
+        this.pagination(pag);
+      },
+      async pagination(pagN = 1) {
         await this.$apollo
           .mutate({
             mutation: gql`
@@ -55,7 +62,7 @@
             `,
             variables: {
               paginationPaginationSettings: {
-                pageNumber: 1,
+                pageNumber: pagN,
                 pageSize: 6,
                 searchParam: this.$route.path.replace(/\/search=|\//, ""),
                 userId: localStorage.getItem("user_id"),
