@@ -15,6 +15,10 @@
         buttonText: "Agregar Producto",
         titles: ["Nombre", "Disponible", "Solicitar", "Editar"],
         buttonType: "edit",
+        onClick() {
+          let containerModal = document.querySelector(".container-modal");
+          containerModal.classList.add("active");
+        },
       };
       return { itemsData, titleData };
     },

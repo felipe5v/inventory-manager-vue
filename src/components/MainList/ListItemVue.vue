@@ -13,19 +13,31 @@
     <main-style-button id="button">
       8 unidades
     </main-style-button>
-    <i class="fas fa-edit" v-if="buttonType === 'edit' ? true : false"></i>
+    <i
+      @click="showModal"
+      class="fas fa-edit"
+      v-if="buttonType === 'edit' ? true : false"
+    ></i>
     <delete-button v-if="buttonType === 'delete' ? true : false" />
+    <modal-product-vue />
   </li>
 </template>
 
 <script>
   import MainStyleButton from "../ElementHelpers/MainStyleButton.vue";
   import DeleteButton from "../ElementHelpers/DeleteButton.vue";
+  import ModalProductVue from "../ModalProducts/ModalProductVue.vue";
   export default {
-    components: { MainStyleButton, DeleteButton },
+    components: { MainStyleButton, DeleteButton, ModalProductVue },
     props: {
       itemData: Object,
       buttonType: String,
+    },
+    methods: {
+      showModal: function() {
+        let containerModal = document.querySelector(".container-modal");
+        containerModal.classList.add("active");
+      },
     },
   };
 </script>

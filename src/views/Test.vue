@@ -1,21 +1,29 @@
 <template>
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <div>
-    Prueben sus componentes aquí
+  <div class="test">
+    <button @click="showModal">Producto</button>
   </div>
+  <modal-product-vue />
 </template>
-
 <script>
-  export default {};
-</script>
+  import ModalProductVue from "../components/ModalProducts/ModalProductVue.vue";
 
-<style></style>
+  export default {
+    components: { ModalProductVue },
+    setup() {},
+    methods: {
+      showModal: function() {
+        let containerModal = document.querySelector(".container-modal");
+        containerModal.classList.add("active");
+      },
+    },
+  };
+</script>
+<style lang="scss" scoped>
+  .test {
+    width: 100%;
+    height: 100%;
+    margin-top: 10%;
+    display: flex;
+    justify-content: center;
+  }
+</style>
