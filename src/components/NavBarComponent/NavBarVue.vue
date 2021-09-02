@@ -14,31 +14,44 @@
         <i class="fas fa-bell ">
           <div id="notification">99 <span>+</span></div>
         </i>
-        <i class="fas fa-user "></i>
+        <i @click="handleMenuClick" class="fas fa-user "></i>
       </div>
     </div>
   </div>
+  <nav-bar-menu class="nav-bar-menu" v-if="menu" />
 </template>
 
 <script>
+  import { ref } from "@vue/reactivity";
   import { useRouter } from "vue-router";
+  import NavBarMenu from "../ElementHelpers/NavBarMenu.vue";
   export default {
+    components: { NavBarMenu },
     props: {
       modelWith: String,
     },
     setup() {
+      const menu = ref(false);
       const router = useRouter();
       const handleEnter = (e) => {
         if (e.keyCode === 13) {
           router.push({ path: `/search=${e.target.value}` });
         }
       };
-      return { handleEnter };
+      const handleMenuClick = () => {
+        menu.value = !menu.value;
+      };
+      return { handleEnter, menu, handleMenuClick };
     },
   };
 </script>
 
 <style lang="scss">
+  .nav-bar-menu {
+    right: 0;
+    position: absolute;
+    top: 78px;
+  }
   #container {
     display: flex;
     flex: 1;
