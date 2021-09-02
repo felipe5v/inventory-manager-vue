@@ -13,16 +13,19 @@
     <main-style-button id="button">
       8 unidades
     </main-style-button>
-    <i class="fas fa-edit"></i>
+    <i class="fas fa-edit" v-if="buttonType === 'edit' ? true : false"></i>
+    <delete-button v-if="buttonType === 'delete' ? true : false" />
   </li>
 </template>
 
 <script>
   import MainStyleButton from "../ElementHelpers/MainStyleButton.vue";
+  import DeleteButton from "../ElementHelpers/DeleteButton.vue";
   export default {
-    components: { MainStyleButton },
+    components: { MainStyleButton, DeleteButton },
     props: {
       itemData: Object,
+      buttonType: String,
     },
   };
 </script>

@@ -6,6 +6,7 @@
         v-for="(item, idx) in itemsData"
         :key="idx"
         :itemData="item"
+        :buttonType="titleData.buttonType"
       />
     </ul>
     <list-pagination-vue />
@@ -36,7 +37,7 @@
     min-width: 100%;
   }
   #layout {
-    padding-top: 120px;
+    padding-top: 50px;
     display: flex;
     justify-content: center;
     align-items: center;

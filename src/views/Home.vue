@@ -14,6 +14,7 @@
         mainTitle: "Productos",
         buttonText: "Agregar Producto",
         titles: ["Nombre", "Disponible", "Solicitar", "Editar"],
+        buttonType: "edit",
       };
       return { itemsData, titleData };
     },
