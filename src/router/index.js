@@ -5,6 +5,7 @@ import Home from "../views/Home";
 import Test from "../views/Test";
 import PendingOrder from "../views/PendingOrder";
 
+import SummaryModal from "../views/SummaryModal";
 const routes = [
   {
     path: "/",
@@ -36,6 +37,11 @@ const routes = [
     path: "/test",
     name: "Test",
     component: Test,
+  },
+  {
+    path: "/summary-modal",
+    name: "Resumen de pedido",
+    component: SummaryModal,
   },
 ];
 

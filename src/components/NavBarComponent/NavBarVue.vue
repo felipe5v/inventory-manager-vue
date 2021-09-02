@@ -55,7 +55,7 @@
     justify-content: center;
     align-items: center;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-    position: fixed;
+    //position: fixed;
     width: 100%;
   }
   #title {
